@@ -5,6 +5,9 @@ const movies = require('./routes/movie');
 const rentals = require('./routes/rental');
 const express = require('express');
 const app = express();
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi)
+
 
 
 mongoose.connect('mongodb://localhost/vidly')
