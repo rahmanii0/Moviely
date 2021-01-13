@@ -12,7 +12,7 @@ const genreSchema = new mongoose.Schema({
     }
 });
 
-const Gener = mongoose.model('Genre', genreSchema);
+const Genre = mongoose.model('Genre', genreSchema);
 
 
 function validateGenre(genre) {
@@ -25,5 +25,5 @@ function validateGenre(genre) {
 
 
 exports.genreSchema = genreSchema;
-exports.Gener = Gener;
+exports.Genre = Genre;
 exports.validateGenre = validateGenre;
