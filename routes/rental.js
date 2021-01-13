@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         movie: {
             _id: movie._id,
             title: movie.title,
-            dialyRenatlRate: movie.dialyRenatlRate
+            // dialyRenatlRate: movie.dialyRenatlRate
         }
     });
     rental = await rental.save();

@@ -38,7 +38,7 @@ const Rental = mongoose.model('Rental', new mongoose.Schema({
             },
             dialyRenatlRate: {
                 type: Number,
-                required: true,
+                required: false,
                 min: 0,
                 max: 255
             },
@@ -61,7 +61,7 @@ function validateRental(rental){
         customerId:Joi.string().required(),
         movieId:Joi.string().required()
     }
-    return Joi.validate(movie,schema);
+    return Joi.validate(rental,schema);
 }
 
 exports.Rental = Rental;
