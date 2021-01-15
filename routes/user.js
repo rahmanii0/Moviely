@@ -1,4 +1,6 @@
 const _ = require('lodash');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const bycrpt = require('bcrypt');
 const { User, vlaidateUser } = require('../models/User');
 const mongoose = require('mongoose');
@@ -22,7 +24,8 @@ router.post('/', async (req, res) => {
     user.password = await bycrpt.hash(user.password,salt);
     await user.save();
 
-    res.send(_.pick(user, [
+    const token = jwt.sign({ _id: user._id }, config.get('jwt_PrivateKey'));
+    res.header('x-api-key',token).send(_.pick(user, [
         '_id',
         'name',
         'email'

@@ -1,3 +1,5 @@
+const config = require('config');
+const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bycrpt = require('bcrypt');
 const Joi = require('joi');
@@ -15,7 +17,9 @@ router.post('/', async (req, res) => {
 
     const validPassword = await bycrpt.compare(req.body.password, user.password);
     if (!validPassword) return res.status(400).send('Invalid email or password');
-    res.send('true');
+    const token = jwt.sign({ _id: user._id }, config.get('jwt_PrivateKey'));
+
+    res.send(token);
 });
 
 function vlaidateUser(req) {

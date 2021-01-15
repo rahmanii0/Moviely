@@ -8,9 +8,14 @@ const auth = require('./routes/auth');
 const express = require('express');
 const app = express();
 const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi)
+Joi.objectId = require('joi-objectid')(Joi);
+const config = require('config');
 
 
+if(!config.get('jwt_PrivateKey')){
+    console.log('FATAL ERROR');
+    process.exit(1);
+}
 
 mongoose.connect('mongodb://localhost/vidly')
     .then(() => console.log('connecting to mongo db'))
